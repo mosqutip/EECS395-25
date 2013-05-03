@@ -45,9 +45,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DeathStare.cs" />
+     <Compile Include="Assets\Locomotion Setup\Locomotion\Scripts\Locomotion.cs" />
+     <Compile Include="Assets\Locomotion Setup\Scripts\JoystickToEvents.cs" />
+     <Compile Include="Assets\Locomotion Setup\Scripts\LocomotionPlayer.cs" />
      <Compile Include="Assets\OnTouchKillPlayer.cs" />
      <Compile Include="Assets\OverheadCamera.cs" />
      <Compile Include="Assets\RobotSentryBehavior.cs" />
+     <Compile Include="Assets\SteathScripts\FollowCamera.cs" />
+     <Compile Include="Assets\SteathScripts\GameCamera.cs" />
+     <Compile Include="Assets\SteathScripts\OverTheShoulderCamera.cs" />
      <Compile Include="Assets\StonyGroundPackage\InstructionsScene\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
      <Compile Include="Assets\kill.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
@@ -71,7 +77,6 @@
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="Assets\ZGONAssets\Shared\Shaders\ZGONShaderOps.cginc" />
-     <None Include="Assets\license.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
