@@ -4,6 +4,8 @@
 *.user
 *.pidb
 *.userprefs
+*.sln
+*.csproj
 StealthGame/Temp
 StealthGame/obj
 StealthGame/Library/cache
