@@ -2,17 +2,14 @@ using UnityEngine;
 using System.Collections;
 
 public class kill : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
+	private bool isHit = false;
+	
+	void OnGUI() {
+		if (isHit) {
+			GUI.Label(new Rect(10,10,150,20),"You've been seen!");
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
 	
 	void OnTriggerStay (Collider obj) {
 		if (obj.tag != "env")
@@ -24,13 +21,12 @@ public class kill : MonoBehaviour {
 			{
 				if (hit.collider.tag != "env")
 				{
+					isHit = true;
 					Debug.Log("hit");
 				}
-				
+			}
 		}
-		}
-			
-			
 	}
+	
 }
 
