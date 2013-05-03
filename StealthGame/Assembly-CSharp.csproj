@@ -53,6 +53,7 @@
      <Compile Include="Assets\RobotSentryBehavior.cs" />
      <Compile Include="Assets\SteathScripts\FollowCamera.cs" />
      <Compile Include="Assets\SteathScripts\GameCamera.cs" />
+     <Compile Include="Assets\SteathScripts\GuardPath.cs" />
      <Compile Include="Assets\SteathScripts\HitCounter.cs" />
      <Compile Include="Assets\SteathScripts\OverTheShoulderCamera.cs" />
      <Compile Include="Assets\StonyGroundPackage\InstructionsScene\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
