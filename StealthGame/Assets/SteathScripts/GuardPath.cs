@@ -8,18 +8,29 @@ public class GuardPath : MonoBehaviour
 {
  	//locomotion
 	protected Animator animator;
-    private float speed = 3;
-    private float direction = 0;
+	protected CharacterController controller;
     private Locomotion locomotion = null;
 	
 	//guard paths
+	public float speed = 3f;
 	public Transform[] waypoints;
-    public float waypointDistance = 0.25f;
+    public float waypointDistance = 25f;
 	public bool loop = true;
 	
+	
 	//index of the next waypoint	
-    private int targetwaypoint;
- 
+    private int targetWaypoint;
+	
+	private float currentDistance()
+	{
+		return Vector3.Distance(transform.position,waypoints[targetWaypoint].position);
+	}
+	
+	private Transform currentTarget()
+	{
+		return waypoints[targetWaypoint];
+	}
+	
     // Use this for initialization
     protected void Start ()
     {
@@ -28,6 +39,8 @@ public class GuardPath : MonoBehaviour
 		//locomotion.Do gives animated movement.
 		animator = GetComponent<Animator>();
         locomotion = new Locomotion(animator);
+		//access the attached CharCtrlr.
+		controller = GetComponent<CharacterController>();
 		
         if(waypoints.Length<=0)
         {
@@ -35,29 +48,30 @@ public class GuardPath : MonoBehaviour
             enabled = false;
         }
 		
-        targetwaypoint = 0;
+        targetWaypoint = 0;
     }
 	
     // moves us along current heading
     protected void Update()
     {	
-		//select the correct waypoing
-		if ((transform.position - waypoints[targetwaypoint].position).magnitude <= waypointDistance)
+		//select the correct waypoint
+		if (currentDistance() <= waypointDistance)
 		{
-			targetwaypoint ++;
-			if(targetwaypoint >= waypoints.Length)
-            {
-                targetwaypoint = 0;
-            }
+			targetWaypoint = (targetWaypoint + 1)%waypoints.Length;
 		}
-		//get the direction to that waypoint
-		direction = Vector3.Angle(transform.position,waypoints[targetwaypoint].position);
-		locomotion.Do(speed, direction);
+		Vector3 direction = Quaternion.LookRotation(waypoints[targetWaypoint].transform.position - transform.position).eulerAngles;
+        //make the robot stop shoe-gazing
+		direction.x = 0;
+        direction.z = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction), Time.deltaTime);
+		//0f: make the robot walk straight
+		locomotion.Do(speed, 0f);
 	}
-
+	
     // draws red line from waypoint to waypoint
     public void OnDrawGizmos()
     {
+		
         Gizmos.color = Color.red;
         if(waypoints==null)
 		{

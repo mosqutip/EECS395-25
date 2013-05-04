@@ -22,7 +22,7 @@ public class LocomotionPlayer : MonoBehaviour {
         locomotion = new Locomotion(animator);
 	}
     
-	void Update () 
+	void Update ()
 	{
         if (animator && Camera.main)
 		{
