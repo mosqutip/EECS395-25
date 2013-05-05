@@ -11,7 +11,7 @@ public class kill : MonoBehaviour {
 		}
 	}
 	
-	void OnTriggerStay (Collider obj) {
+	void OnTriggerEnter (Collider obj) {
 		if (obj.tag != "env")
 		{	
 			Vector3 start = this.transform.parent.gameObject.transform.position;
