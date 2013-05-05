@@ -21,8 +21,7 @@ public class kill : MonoBehaviour {
 			{
 				if (hit.collider.tag != "env")
 				{
-					isHit = true;
-					Debug.Log("hit");
+					Application.LoadLevel("Gameover");
 				}
 			}
 		}
