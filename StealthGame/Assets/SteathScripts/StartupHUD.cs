@@ -19,7 +19,7 @@ public class StartupHUD : MonoBehaviour {
 		}
 		else 
 		{
-			for(int x=0; x<=notes.Length; x++)
+			for(int x=0; x<notes.Length; x++)
 			{
 				GUI.Label(new Rect(10,20*x+10,200,20), notes[x]);
 			}
