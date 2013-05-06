@@ -14,9 +14,13 @@ public class gui : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+		//Debug.Log (GameObject.Find("CurrentLevel").GetComponent<CurrentLevel>().current);
 		transform.Translate(0, 0, 0);
 		if (GUI.Button (new Rect (Screen.width/2 - 50, Screen.height/2 - 15, 100, 30), "Retry")) {
-			Application.LoadLevel(GameObject.Find("CurrentLevel").GetComponent<CurrentLevel>().current);
+			string temp = GameObject.Find("CurrentLevel").GetComponent<CurrentLevel>().current;
+			Destroy(GameObject.Find("CurrentLevel"));
+			Application.LoadLevel(temp);
+			
 		}
 	}
 }
