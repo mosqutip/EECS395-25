@@ -1,6 +1,7 @@
 .DS_Store
 *.*~
 *.csproj
+*.exe
 *.pidb
 *.sln
 *.suo

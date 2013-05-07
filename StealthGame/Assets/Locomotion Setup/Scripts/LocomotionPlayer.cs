@@ -12,7 +12,7 @@ public class LocomotionPlayer : MonoBehaviour {
 
     protected Animator animator;
 
-    private float speed = 0;
+    public float speed = 0;
     private float direction = 0;
     private Locomotion locomotion = null;
 
@@ -28,7 +28,7 @@ public class LocomotionPlayer : MonoBehaviour {
 		{
             JoystickToEvents.Do(transform,Camera.main.transform, ref speed, ref direction);
             
-			if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+			if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && (GameObject.Find("Stamina").GetComponent<Stamina>().stamina > 0)) {
 				locomotion.Do(speed * 8, direction * 180);
 			}
 			else {
