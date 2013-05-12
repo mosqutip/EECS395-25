@@ -15,8 +15,10 @@ public class Stamina : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) 
-			&& GameObject.FindGameObjectWithTag("Player").GetComponent<LocomotionPlayer>().speed > 0){
+		PlayerMovement playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+		if (playerMovement.sprint
+			&& ! playerMovement.sneak
+			&& playerMovement.speed > 0){
 			if (stamina > 0){
 				stamina -= Time.deltaTime * speed * (1f/10f);
 				if (stamina < 0){
