@@ -12,15 +12,11 @@ public class PlayerMovement : MonoBehaviour
 	private Animator anim;				// Reference to the animator component.
 	private HashIDs hash;			// Reference to the HashIDs.
 	
-	
-	float h,v;
-	
 	void Awake ()
 	{
 		anim = GetComponent<Animator>();
 		hash = GameObject.FindGameObjectWithTag("GameController").GetComponent<HashIDs>();
 	}
-	
 	
 	void FixedUpdate ()
 	{
@@ -31,12 +27,6 @@ public class PlayerMovement : MonoBehaviour
 		Move(h, v, sneak, sprint);
 	}
 	
-	void OnGUI()
-	{
-		string debugString = "axes: ("+h+", "+v+")";
-		GUI.Label(new Rect(Screen.width/2,Screen.height/2, 400,100), debugString);
-	}
-	
 	void Update ()
 	{
 		AudioManagement();
@@ -45,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Move (float horizontal, float vertical, bool sneaking, bool sprinting)
 	{
-		h=horizontal;
-		v=vertical;
 		anim.SetBool(hash.sneakingBool, sneaking);
 		anim.SetBool(hash.sprintingBool, sprinting);
 	
