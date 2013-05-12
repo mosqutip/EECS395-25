@@ -5,11 +5,21 @@ public class kill : MonoBehaviour {
 	
 	private bool isHit = false;
 	
-	void OnGUI() {
-		if (isHit) {
-			GUI.Label(new Rect(10,10,150,20),"You've been seen!");
-		}
-	}
+	public float delay = 2.5f;
+	private float clock;
+	
+	private Animator anim;
+	private PlayerMovement move;
+	private HashIDs hash;
+	private bool playerDead;
+	
+	void Awake ()
+    {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+        anim = player.GetComponent<Animator>();
+        move = player.GetComponent<PlayerMovement>();
+        hash = GameObject.FindGameObjectWithTag("GameController").GetComponent<HashIDs>();
+    }
 	
 	void OnTriggerEnter (Collider obj) {
 		if (obj.tag != "env")
@@ -21,11 +31,51 @@ public class kill : MonoBehaviour {
 			{
 				if (hit.collider.tag != "env")
 				{
-					Application.LoadLevel("Gameover");
+					if(!playerDead)
+					{
+	                	PlayerDying();
+					}
 				}
 			}
 		}
 	}
 	
-}
+        
+    
+    void Update ()
+    {
+	    if(playerDead)
+        {
+            PlayerDead();
+            LevelReset();
+        }
+    }
+    
+    
+    void PlayerDying ()
+    {
+        playerDead = true;
+        anim.SetBool(hash.deadBool, playerDead);
+    }
+    
+    
+    void PlayerDead ()
+    {
+        if(anim.GetCurrentAnimatorStateInfo(0).nameHash == hash.dyingState)
+		{
+            anim.SetBool(hash.deadBool, false);
+		}
+        move.enabled = false;
+    }
+    
+    
+    void LevelReset ()
+    {
+        clock += Time.deltaTime;
+        if(clock >= delay)
+		{
+            Application.LoadLevel("Gameover");
+		}
+    }
 
+}
