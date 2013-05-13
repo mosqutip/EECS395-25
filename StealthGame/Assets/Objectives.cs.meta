@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 4418f5452c1954465887997531599033
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - objectivesWindow: {fileID: 2800000, guid: c6db9fea8e7964e2a9cbf8e8e85796c5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
