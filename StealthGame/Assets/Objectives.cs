@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Objectives : MonoBehaviour
 {
-	private string objectives;
+	private string objectivesText;
 	private bool showMenu = false;
 	public Texture objectivesPane;
 	
@@ -11,10 +11,11 @@ public class Objectives : MonoBehaviour
 	{
 		// Original height and width
 		// Scale with gui matrix change
-		objectives = "Use WASD or the arrow keys to move\n" +
-					 "Hold tab to run\n" +
-					 "Avoid the guards and their flashlights\n" +
-					 "To beat the level, get to the door!";
+		objectivesText = "Use WASD or the arrow keys to move\n" +
+					 	 "Hold tab to run\n" +
+						 "Hold shift to sneak\n" +
+					 	 "Avoid the guards and their flashlights\n" +
+					 	 "To beat the level, find the flare and escape!";
 	}
 	
 	void Update()
@@ -23,7 +24,6 @@ public class Objectives : MonoBehaviour
 		{
 			showMenu = true;
 		}
-		
 		if (Input.GetKeyUp(KeyCode.O))
 		{
 			showMenu = false;
@@ -38,7 +38,7 @@ public class Objectives : MonoBehaviour
 			// 5 pixel offset due to the label on top?
 			Rect objectivesPosition = new Rect(10.0f, 5.0f, 497.0f, 369.0f);
 			GUI.DrawTexture(objectivesPanePosition, objectivesPane);
-			GUI.Label(objectivesPosition, objectives);
+			GUI.Label(objectivesPosition, objectivesText);
 		}
 	}
 }

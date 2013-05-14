@@ -3,25 +3,22 @@ using System.Collections;
 
 
 
-public class CurrentLevel : MonoBehaviour {
-	
+public class CurrentLevel : MonoBehaviour
+{	
 	public string current;
-	
-	// Use this for initialization
-	void Start () {
-	
+
+	void Start ()
+	{
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+	{
 	}
 	
-	void Awake () {
-	//	current = Application.loadedLevelName;
+	void Awake ()
+	{
 		DontDestroyOnLoad(transform.gameObject);
 		CurrentLevel temp = gameObject.GetComponent<CurrentLevel>();
 		temp.current = Application.loadedLevelName;
-		Debug.Log(gameObject.GetComponent<CurrentLevel>().current);
 	}
 }

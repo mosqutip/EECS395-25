@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Alarm : MonoBehaviour
 {
-	private int alarmLevel;
+	private int alarmLevel, ySize = Screen.height;
 	public Texture alarmTexture;
-	private int xSize = Screen.width, ySize = Screen.height;
 	
 	void Start()
 	{
@@ -14,7 +13,6 @@ public class Alarm : MonoBehaviour
 
 	void Update()
 	{
-	
 	}
 	
 	void OnGUI()

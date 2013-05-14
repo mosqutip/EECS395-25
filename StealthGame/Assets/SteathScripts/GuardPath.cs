@@ -4,6 +4,7 @@ using System.Collections;
   
 [RequireComponent(typeof(Animator))]  
 [RequireComponent(typeof(CharacterController))]
+
 public class GuardPath : MonoBehaviour
 {
  	//locomotion
@@ -18,7 +19,6 @@ public class GuardPath : MonoBehaviour
     public float waypointDistance = 25f;
 	public bool loop = true;
 	
-	
 	//index of the next waypoint	
     private int targetWaypoint;
 	
@@ -32,7 +32,6 @@ public class GuardPath : MonoBehaviour
 		return waypoints[targetWaypoint];
 	}
 	
-    // Use this for initialization
     protected void Start ()
     {
 		//locomotion is the animator script from Unity's starter-kit
@@ -45,7 +44,6 @@ public class GuardPath : MonoBehaviour
 		
         if(waypoints.Length<=0)
         {
-            Debug.Log("No waypoints on "+name);
             enabled = false;
         }
 		
@@ -72,11 +70,9 @@ public class GuardPath : MonoBehaviour
     // draws red line from waypoint to waypoint
     public void OnDrawGizmos()
     {
-		
         Gizmos.color = Color.red;
         if(waypoints==null)
 		{
-        	;
 		}
         for(int i=0;i< waypoints.Length;i++)
         {
@@ -88,5 +84,4 @@ public class GuardPath : MonoBehaviour
             }
         }
     }
- 
 }

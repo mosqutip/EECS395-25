@@ -54,9 +54,6 @@ function Awake ()
 		headOffset = centerOffset;
 		headOffset.y = characterController.bounds.max.y - _target.position.y;
 	}
-	else
-		Debug.Log("Please assign a target to the camera that has a ThirdPersonController script attached.");
-
 	
 	Cut(_target, centerOffset);
 }

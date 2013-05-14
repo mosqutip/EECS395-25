@@ -1,15 +1,28 @@
 using UnityEngine;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 public class EndConditions : MonoBehaviour {
 	
-    void OnTriggerEnter(Collider other) {
-		if (other.gameObject.name == "door_4_1")
+	public Dictionary<string, bool> objectives = new Dictionary<string, bool>();
+	
+	void Start()
+	{
+		objectives.Add("Cylinder", false);
+		objectives.Add("EndSphere", false);
+	}
+	
+	void Update()
+	{
+		if (objectives["Cylinder"] && objectives["EndSphere"])
 		{
-			int nextLevel = Application.loadedLevel + 1;
-			Destroy(GameObject.Find("CurrentLevel"));
-			Application.LoadLevel(nextLevel);
+			Application.LoadLevel("Gameover");
 		}
+	}
+	
+    void OnTriggerEnter(Collider other)
+	{
+		objectives[other.gameObject.name] = true;
+		gameObject.GetComponent<DrawLine>().start = GameObject.FindGameObjectWithTag("Finish").transform.position;
 	}
 }
