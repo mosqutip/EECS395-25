@@ -13,6 +13,7 @@ public class GuardPath : MonoBehaviour
 	
 	//guard paths
 	public float speed = 3f;
+	public int rotationSpeed = 3;
 	public Transform[] waypoints;
     public float waypointDistance = 25f;
 	public bool loop = true;
@@ -63,7 +64,7 @@ public class GuardPath : MonoBehaviour
         //make the robot stop shoe-gazing
 		direction.x = 0;
         direction.z = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction), Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction), Time.deltaTime*rotationSpeed);
 		//0f: make the robot walk straight
 		locomotion.Do(speed, 0f);
 	}

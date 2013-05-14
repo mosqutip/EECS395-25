@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 	private Animator anim;				// Reference to the animator component.
 	private HashIDs hash;			// Reference to the HashIDs.
 	
+	public int cheatMode;
+	
 	void Awake ()
 	{
 		anim = GetComponent<Animator>();
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 				speed = 10f;
 		
 			else
-				speed = 2f;
+				speed = 2f*cheatMode;
 
 			anim.SetFloat(hash.speedFloat, speed, speedDampTime, Time.deltaTime);	
 			
