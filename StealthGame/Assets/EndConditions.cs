@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 public class EndConditions : MonoBehaviour {
 	
-	public Dictionary<string, bool> objectives = new Dictionary<string, bool>();
+	public List<string> objectives = new List<string>(5);
 	
 	void Start()
 	{
-		objectives.Add("Cylinder", false);
-		objectives.Add("EndSphere", false);
+		objectives.Add("Cylinder");
+		objectives.Add("EndSphere");
 	}
 	
 	void Update()
 	{
-		if (objectives["Cylinder"] && objectives["EndSphere"])
+		if (objectives.Count == 0)
 		{
 			Application.LoadLevel("Gameover");
 		}
@@ -22,7 +22,13 @@ public class EndConditions : MonoBehaviour {
 	
     void OnTriggerEnter(Collider other)
 	{
-		objectives[other.gameObject.name] = true;
-		gameObject.GetComponent<DrawLine>().start = GameObject.FindGameObjectWithTag("Finish").transform.position;
+		if (other.gameObject.tag == "InventoryItem" || other.gameObject.tag == "Finish")
+		{
+			objectives.Remove(other.gameObject.name);
+			if (objectives.Count > 0)
+			{
+				gameObject.GetComponent<DrawLine>().start = GameObject.Find(objectives[0]).transform.position;
+			}
+		}
 	}
 }

@@ -1,20 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
-public class MiniMap : MonoBehaviour {
-	public float height;
+public class MiniMap : MonoBehaviour
+{
 	private Vector3 pos;
+	public float height;
 	
-	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+	{
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		pos = GameObject.FindGameObjectWithTag("Player").transform.position;
 		Vector3 newPos = new Vector3(pos.x, height, pos.z);
 		transform.position = newPos;
-	
 	}
 }
