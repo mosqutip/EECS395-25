@@ -15,7 +15,7 @@ public class GuardHearing : MonoBehaviour
 	
 	void OnTriggerStay(Collider obj)
 	{
-		if (obj.tag != "env")
+		if (obj.tag == "Noise")
 		{
 			var newRotation = Quaternion.LookRotation(obj.transform.position - transform.parent.transform.position, Vector3.up); 
 			newRotation.x = 0;

@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
 		sneak = Input.GetButton("Sneak");
-		sprint = Input.GetButton("Sprint"); 
+		sprint = Input.GetButton("Sprint");
 		Move(h, v, sneak, sprint);
 	}
 	
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 			
 			if (sprinting && (GameObject.Find("Stamina").GetComponent<Stamina>().stamina > 0))
 			{
-				speed = 10f;
+				speed = 10f*cheatMode;
 			}
 			else
 			{
@@ -68,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
 		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 		transform.rotation = newRotation;
 	}
-	
 	
 	void AudioManagement()
 	{

@@ -11,9 +11,11 @@ public class Inventory : MonoBehaviour
 		items = new Dictionary<string, int>();
 	}
 	
-	void OnTriggerEnter(Collider obj) 
+	void OnTriggerEnter(Collider obj)
 	{
-		if (obj.tag == "InventoryItem")
+		
+		float distance = Vector3.Distance(transform.position, obj.transform.position);
+		if ((obj.tag == "InventoryItem") && (distance < 2))
 		{
 			string name = obj.GetComponent<InventoryInfo>().name;
 			if (items.ContainsKey(name))
