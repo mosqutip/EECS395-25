@@ -20,16 +20,18 @@ public class kill : MonoBehaviour
 	
 	void OnTriggerEnter (Collider obj)
 	{
+		
 		if (obj.tag == "Player")
 		{	
+			
 			Vector3 start = this.transform.parent.gameObject.transform.position;
 			Vector3 end = obj.transform.position;
 			RaycastHit hit;
 			if (Physics.Raycast(start, end - start, out hit))
 			{
-				if (hit.collider.tag == "Player")
+				if (hit.collider.tag != "env")
 				{
-					if(!playerDead)
+					if (!playerDead)
 					{
 	                	PlayerDying();
 					}

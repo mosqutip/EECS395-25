@@ -12,8 +12,9 @@ public class Objectives : MonoBehaviour
 		// Original height and width
 		// Scale with gui matrix change
 		objectivesText = "Use WASD or the arrow keys to move\n" +
-					 	 "Hold tab to run\n" +
+					 	 "Hold space to run\n" +
 						 "Hold shift to sneak\n" +
+						 "Press Q and E to rotate the camera orientation\n" +
 					 	 "Avoid the guards and their flashlights\n" +
 					 	 "To beat the level, find the flare and escape!";
 	}
