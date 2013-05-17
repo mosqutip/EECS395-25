@@ -49,9 +49,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				speed = 2f*cheatMode;
 			}
-			
 			anim.SetFloat(hash.speedFloat, speed, speedDampTime, Time.deltaTime);	
-			
 		}
 		else
 		{

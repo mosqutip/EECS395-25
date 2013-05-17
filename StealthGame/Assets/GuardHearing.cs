@@ -4,23 +4,41 @@ using System.Collections;
 public class GuardHearing : MonoBehaviour
 {
 	public int speed;
-
-	void Start ()
+	public bool active;
+	
+	void OnTriggerEnter(Collider obj)
 	{
+		if (obj.tag == "Noise")
+		{
+			active = true;
+		}
 	}
 	
-	void Update ()
+	void OnTriggerExit(Collider obj)
 	{
+		if (obj.tag == "Noise")
+		{
+			active = false;
+		}
 	}
 	
 	void OnTriggerStay(Collider obj)
 	{
 		if (obj.tag == "Noise")
 		{
-			var newRotation = Quaternion.LookRotation(obj.transform.position - transform.parent.transform.position, Vector3.up); 
-			newRotation.x = 0;
-			newRotation.z = 0;
-			transform.parent.transform.rotation = Quaternion.Slerp(transform.parent.transform.rotation, newRotation, speed *Time.deltaTime);
+			Vector3 start = transform.position;
+			Vector3 end = obj.transform.parent.gameObject.transform.position;
+			RaycastHit hit;
+			if (Physics.Raycast(start, end - start, out hit))
+			{
+				if (hit.collider.tag == "Player")
+				{
+					var newRotation = Quaternion.LookRotation(obj.transform.position - transform.position, Vector3.up); 
+					newRotation.x = 0;
+					newRotation.z = 0;
+					transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, speed *Time.deltaTime);
+				}
+			}
 		}
 	}
 }

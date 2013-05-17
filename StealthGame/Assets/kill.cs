@@ -23,13 +23,12 @@ public class kill : MonoBehaviour
 		
 		if (obj.tag == "Player")
 		{	
-			
 			Vector3 start = this.transform.parent.gameObject.transform.position;
 			Vector3 end = obj.transform.position;
 			RaycastHit hit;
 			if (Physics.Raycast(start, end - start, out hit))
 			{
-				if (hit.collider.tag != "env")
+				if (hit.collider.tag == "Player")
 				{
 					if (!playerDead)
 					{
