@@ -29,7 +29,7 @@ public class kill : MonoBehaviour
 			RaycastHit hit;
 			if (Physics.Raycast(start, end - start, out hit))
 			{
-				if (hit.collider.tag != "env")
+				if (hit.collider.tag == "Player")
 				{
 					if (!playerDead)
 					{
