@@ -23,7 +23,6 @@ public class kill : MonoBehaviour
 		
 		if (obj.tag == "Player")
 		{	
-			
 			Vector3 start = this.transform.parent.gameObject.transform.position;
 			Vector3 end = obj.transform.position;
 			RaycastHit hit;
