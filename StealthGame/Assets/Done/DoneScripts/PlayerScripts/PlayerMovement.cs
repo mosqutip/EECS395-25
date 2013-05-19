@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 	public bool sneak;
 	public bool sprint;
 	public int cheatMode;
+	public AudioClip sprintClip;
+	public AudioClip walkClip;
 	
 	void Awake()
 	{
@@ -29,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Update()
 	{
-		AudioManagement();
+		AudioManagement(sneak, sprint);
 	}
 	
 	void Move(float horizontal, float vertical, bool sneaking, bool sprinting)
@@ -67,20 +69,29 @@ public class PlayerMovement : MonoBehaviour
 		transform.rotation = newRotation;
 	}
 	
-	void AudioManagement()
-	{
-		// If the player is currently in the run state...
-		if (anim.GetCurrentAnimatorStateInfo(0).nameHash == hash.locomotionState)
+	void AudioManagement(bool sneaking, bool sprinting) {
+		if (anim.GetCurrentAnimatorStateInfo(0).nameHash == hash.locomotionState && !sneaking)
 		{
+			//sprint vs walk
+			if (sprinting && (GameObject.Find("Stamina").GetComponent<Stamina>().stamina > 0)) 
+			{
+				audio.clip = sprintClip;
+				audio.volume = 1f;
+			}
+			else
+			{
+				audio.clip = walkClip;
+				audio.volume = 0.6f;
+			}
+			//actually play audio
 			if (!audio.isPlaying)
 			{
 				audio.Play();
-	
 			}
 		}
+		//no footsteps if the player is still
 		else
 		{
-			// Otherwise stop the footsteps.
 			audio.Stop();
 		}
 	}
