@@ -27,7 +27,7 @@ public class Jukebox : MonoBehaviour
     /// <summary>
     /// The volume of the music.
     /// </summary>
-    private float _volume = 100.0f;
+    private float _volume = 30.0f;
     /// <summary>
     /// Whether to play a random song instead of in order.
     /// </summary>
