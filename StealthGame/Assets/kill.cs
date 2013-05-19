@@ -14,6 +14,8 @@ public class kill : MonoBehaviour
 	
 	void Awake()
     {
+		killLine = gameObject.AddComponent<LineRenderer>();
+		killLine.enabled = false;
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
         anim = player.GetComponent<Animator>();
         move = player.GetComponent<PlayerMovement>();
@@ -44,18 +46,11 @@ public class kill : MonoBehaviour
 		deathLight.light.color = new Color(1.0f, deathLight.light.color.g - 0.015625f, deathLight.light.color.b - 0.015625f, 1.0f);
 		if (deathLight.light.spotAngle <= 5.0f)
 		{
+			killLine.enabled = true;
 			deathLight.light.spotAngle = 5.0f;
 			deathLight.light.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-			killLine = gameObject.AddComponent<LineRenderer>();
 			killLine.SetVertexCount(2);
-			Vector3 pos1, pos2;
-			pos1 = this.transform.parent.gameObject.transform.position;
-			pos2 = GameObject.FindGameObjectWithTag("Player").transform.position;
-			pos1.y += 1.6f;
-			pos2.y += 1.5f;
-			killLine.SetPosition(0, pos1);
-			killLine.SetPosition(1, pos2);
-			killLine.SetWidth(0.1f, 0.1f);
+			killLine.SetWidth(0.05f, 0.05f);
 			killLine.material = new Material(Shader.Find("Particles/Additive"));
 			Color start = new Color(1.0f, 0.0f, 0.0f, 1.0f);
 			killLine.SetColors(start, start);
@@ -88,6 +83,20 @@ public class kill : MonoBehaviour
     
     void Update()
 	{
+		Vector3 pos1, pos2;
+		pos1 = this.transform.parent.gameObject.transform.position;
+		pos2 = GameObject.FindGameObjectWithTag("Player").transform.position;
+		foreach (Transform child in GameObject.FindGameObjectWithTag("Player").transform)
+		{
+			if (child.name == "Hips")
+			{
+				pos2 = child.transform.position;
+				break;
+			}
+		}
+		pos1.y += 1.6f;
+		killLine.SetPosition(0, pos1);
+		killLine.SetPosition(1, pos2);
 	    if (playerDead)
         {
             PlayerDead();
@@ -118,7 +127,6 @@ public class kill : MonoBehaviour
 		}
         move.enabled = false;
     }
-    
     
     void LevelReset()
     {
