@@ -9,6 +9,8 @@ public class kill : MonoBehaviour
 	private HashIDs hash;
 	private bool playerDead;
 	public float delay = 2.5f;
+	private bool playerInView;
+	private LineRenderer killLine;
 	
 	void Awake()
     {
@@ -18,11 +20,10 @@ public class kill : MonoBehaviour
         hash = GameObject.FindGameObjectWithTag("GameController").GetComponent<HashIDs>();
     }
 	
-	void OnTriggerEnter (Collider obj)
-	{
-		
+	void OnTriggerEnter(Collider obj)
+	{	
 		if (obj.tag == "Player")
-		{	
+		{		
 			Vector3 start = this.transform.parent.gameObject.transform.position;
 			Vector3 end = obj.transform.position;
 			RaycastHit hit;
@@ -30,22 +31,77 @@ public class kill : MonoBehaviour
 			{
 				if (hit.collider.tag == "Player")
 				{
-					if (!playerDead)
-					{
-	                	PlayerDying();
-					}
+					playerInView = true;
 				}
 			}
 		}
-	}   
+	}
+	
+	void PlayerInView()
+	{
+		Component deathLight = this.transform.parent.gameObject.GetComponentInChildren(typeof(Light));
+		deathLight.light.spotAngle -= 1.0f;
+		deathLight.light.color = new Color(1.0f, deathLight.light.color.g - 0.015625f, deathLight.light.color.b - 0.015625f, 1.0f);
+		if (deathLight.light.spotAngle <= 5.0f)
+		{
+			deathLight.light.spotAngle = 5.0f;
+			deathLight.light.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+			killLine = gameObject.AddComponent<LineRenderer>();
+			killLine.SetVertexCount(2);
+			Vector3 pos1, pos2;
+			pos1 = this.transform.parent.gameObject.transform.position;
+			pos2 = GameObject.FindGameObjectWithTag("Player").transform.position;
+			pos1.y += 1.6f;
+			pos2.y += 1.5f;
+			killLine.SetPosition(0, pos1);
+			killLine.SetPosition(1, pos2);
+			killLine.SetWidth(0.1f, 0.1f);
+			killLine.material = new Material(Shader.Find("Particles/Additive"));
+			Color start = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+			killLine.SetColors(start, start);
+			if (!playerDead)
+			{
+				PlayerDying();
+			}
+		}
+	}
+	
+	void ResetVisionCone()
+	{
+		Component deathLight = this.transform.parent.gameObject.GetComponentInChildren(typeof(Light));
+		deathLight.light.spotAngle += 1.0f;
+		deathLight.light.color = new Color(1.0f, deathLight.light.color.g + 0.015625f, deathLight.light.color.b + 0.015625f, 1.0f);
+		if (deathLight.light.spotAngle > 63.0f)
+		{
+			deathLight.light.spotAngle = 63.0f;
+			deathLight.light.color = new Color(1.0f, 1.0f, 1.0f, 100.0f);
+		}
+	}
+	
+	void OnTriggerExit(Collider obj)
+	{
+        if (obj.tag == "Player")
+		{
+			playerInView = false;
+		}
+    }
     
     void Update()
-    {
+	{
 	    if (playerDead)
         {
             PlayerDead();
             LevelReset();
         }
+		// Must follow the above block for death checking or an infinite death loop occurs.
+		if (playerInView)
+		{
+			PlayerInView();
+		}
+		else
+		{
+			ResetVisionCone();
+		}
     }
     
     void PlayerDying()
