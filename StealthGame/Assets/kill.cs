@@ -1,7 +1,3 @@
-                                                                     
-                                                                     
-                                                                     
-                                             
 using UnityEngine;
 using System.Collections;
 
@@ -11,7 +7,7 @@ public class kill : MonoBehaviour
 	private Animator anim;
 	private PlayerMovement move;
 	private HashIDs hash;
-	private bool playerDead;
+	public bool playerDead = false;
 	public float delay = 2.5f;
 	private bool playerInView;
 	private LineRenderer killLine;

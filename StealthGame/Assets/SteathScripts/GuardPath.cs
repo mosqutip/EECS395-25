@@ -53,18 +53,26 @@ public class GuardPath : MonoBehaviour
     // moves us along current heading
     protected void Update()
     {	
-		//select the correct waypoint
-		if (currentDistance() <= waypointDistance)
+		if ((GetComponent<GuardHearing>().active) || gameObject.GetComponentInChildren(typeof(BoxCollider)).GetComponent<kill>().playerDead)
 		{
-			targetWaypoint = (targetWaypoint + 1)%waypoints.Length;
+			locomotion.Do (0,0f);
 		}
-		Vector3 direction = Quaternion.LookRotation(waypoints[targetWaypoint].transform.position - transform.position).eulerAngles;
-        //make the robot stop shoe-gazing
-		direction.x = 0;
-        direction.z = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction), Time.deltaTime*rotationSpeed);
-		//0f: make the robot walk straight
-		locomotion.Do(speed, 0f);
+			
+		else
+		{
+			//select the correct waypoint
+			if (currentDistance() <= waypointDistance)
+			{
+				targetWaypoint = (targetWaypoint + 1)%waypoints.Length;
+			}
+			Vector3 direction = Quaternion.LookRotation(waypoints[targetWaypoint].transform.position - transform.position).eulerAngles;
+	        //make the robot stop shoe-gazing
+			direction.x = 0;
+	        direction.z = 0;
+	        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(direction), Time.deltaTime*rotationSpeed);
+			//0f: make the robot walk straight
+			locomotion.Do(speed, 0f);
+		}
 	}
 	
     // draws red line from waypoint to waypoint
