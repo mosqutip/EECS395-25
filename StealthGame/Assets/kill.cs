@@ -7,8 +7,10 @@ public class kill : MonoBehaviour
 	private Animator anim;
 	private PlayerMovement move;
 	private HashIDs hash;
+	
 	public bool playerDead = false;
 	public float delay = 2.5f;
+	
 	private bool playerInView;
 	private LineRenderer killLine;
 	
@@ -57,6 +59,7 @@ public class kill : MonoBehaviour
 			if (!playerDead)
 			{
 				PlayerDying();
+				audio.Play();
 			}
 		}
 	}

@@ -19,6 +19,8 @@ public class GuardPath : MonoBehaviour
     public float waypointDistance = 25f;
 	public bool loop = true;
 	
+	public AudioClip walkClip;
+	
 	//index of the next waypoint	
     private int targetWaypoint;
 	
@@ -92,4 +94,5 @@ public class GuardPath : MonoBehaviour
             }
         }
     }
+	
 }
