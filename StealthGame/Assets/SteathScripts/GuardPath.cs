@@ -55,7 +55,7 @@ public class GuardPath : MonoBehaviour
     // moves us along current heading
     protected void Update()
     {	
-		if ((GetComponent<GuardHearing>().active) || gameObject.GetComponentInChildren(typeof(BoxCollider)).GetComponent<kill>().playerDead)
+		if ((GetComponent<GuardHearing>().getAlerted()) || gameObject.GetComponentInChildren(typeof(BoxCollider)).GetComponent<kill>().playerDead)
 		{
 			locomotion.Do (0,0f);
 		}

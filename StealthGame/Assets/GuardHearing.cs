@@ -4,13 +4,13 @@ using System.Collections;
 public class GuardHearing : MonoBehaviour
 {
 	public int speed;
-	public bool active;
+	private bool alerted;
 	
 	void OnTriggerEnter(Collider obj)
 	{
 		if (obj.tag == "Noise")
 		{
-			active = true;
+			alerted = true;
 		}
 	}
 	
@@ -18,7 +18,7 @@ public class GuardHearing : MonoBehaviour
 	{
 		if (obj.tag == "Noise")
 		{
-			active = false;
+			alerted = false;
 		}
 	}
 	
@@ -40,5 +40,13 @@ public class GuardHearing : MonoBehaviour
 				}
 			}
 		}
+	}
+	public bool getAlerted()
+	{
+		return alerted;
+	}
+	public void setAlerted(bool isAlerted)
+	{
+		alerted = isAlerted;
 	}
 }
