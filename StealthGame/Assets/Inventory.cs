@@ -13,9 +13,8 @@ public class Inventory : MonoBehaviour
 	
 	void OnTriggerEnter(Collider obj)
 	{
-		
 		float distance = Vector3.Distance(transform.position, obj.transform.position);
-		if ((obj.tag == "InventoryItem") && (distance < 2))
+		if ((obj.tag == "InventoryItem"))
 		{
 			string name = obj.GetComponent<InventoryInfo>().name;
 			if (items.ContainsKey(name))
@@ -26,7 +25,6 @@ public class Inventory : MonoBehaviour
 			{
 				items.Add(name, 1);
 			}
-			
 			Destroy(obj.transform.parent.gameObject);
 		}
 	}

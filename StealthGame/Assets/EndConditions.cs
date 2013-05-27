@@ -20,14 +20,14 @@ public class EndConditions : MonoBehaviour {
 		}
 	}
 	
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider obj)
 	{
-		if (other.gameObject.tag == "InventoryItem" || other.gameObject.tag == "Finish")
+		if (obj.gameObject.tag == "InventoryItem" || obj.gameObject.tag == "Finish")
 		{
-			objectives.Remove(other.gameObject.name);
+			objectives.Remove(obj.gameObject.name);
 			if (objectives.Count > 0)
 			{
-				gameObject.GetComponent<DrawLine>().start = GameObject.Find(objectives[0]).transform.position;
+				gameObject.transform.parent.GetComponent<DrawLine>().start = GameObject.Find(objectives[0]).transform.position;
 			}
 		}
 	}
