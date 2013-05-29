@@ -16,7 +16,7 @@ public class EndConditions : MonoBehaviour {
 	{
 		if (objectives.Count == 0)
 		{
-			Application.LoadLevel("Gameover");
+			Application.LoadLevel(Application.loadedLevel +1);
 		}
 	}
 	

@@ -16,7 +16,8 @@ public class ForestEndConditions : MonoBehaviour {
 	{
 		if (objectives.Count == 0)
 		{
-			Application.LoadLevel("Gameover");
+			Debug.Log("Victory!");
+			Application.LoadLevel("victory");
 		}
 	}
 	
