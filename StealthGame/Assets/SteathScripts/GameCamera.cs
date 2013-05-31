@@ -3,15 +3,17 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour {
     public GameObject target;
-    public float damping = 1;
+    public float rotateSpeed = 5;
     Vector3 offset;
     void Start() {
-        offset = transform.position - target.transform.position;
+        offset = target.transform.position - transform.position;
     }
     void LateUpdate() {
-        Vector3 desiredPosition = target.transform.position + offset;
-        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
-        transform.position = position;
-        transform.LookAt(target.transform.position);
+        float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
+        target.transform.Rotate(0, horizontal, 0);
+        float desiredAngle = target.transform.eulerAngles.y;
+        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
+        transform.position = target.transform.position - (rotation * offset);
+        transform.LookAt(target.transform);
     }
 }

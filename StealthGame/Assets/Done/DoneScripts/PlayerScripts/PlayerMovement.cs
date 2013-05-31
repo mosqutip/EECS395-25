@@ -63,7 +63,11 @@ public class PlayerMovement : MonoBehaviour
 	
 	void Rotating(float horizontal, float vertical)
 	{
-		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
+		
+		Vector3 v = Camera.mainCamera.transform.forward * vertical;
+		Vector3 h = Camera.mainCamera.transform.right * horizontal;
+		Vector3 targetDirection = h + v;
+		targetDirection.y = 0;
 		Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 		transform.rotation = newRotation;
