@@ -17,8 +17,7 @@ public class Stamina : MonoBehaviour
 	void Start()
 	{
 		emptyBarRect = new Rect((xSize - xOffset - 5.0f), (ySize - yOffset - 5.0f), xOffset, yOffset);
-		sprintRect = new Rect((xSize - xOffset - (35.0f * screenScaleX)), (ySize - yOffset - screenScaleY),
-							  (25 * screenScaleX), (25 * screenScaleY));
+		sprintRect = new Rect((xSize - xOffset - 35.0f), (ySize - yOffset - screenScaleY), 25, 25);
 		move = FindPlayer().GetComponent<PlayerMovement>();
 	}
 	
