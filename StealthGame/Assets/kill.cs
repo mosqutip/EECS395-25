@@ -12,7 +12,7 @@ public class kill : MonoBehaviour
 	public bool playerDead = false;
 	public float delay = 2.5f;
 	
-	private bool playerInView;
+	private bool playerInView = false;
 	private LineRenderer killLine;
 	
 	void Awake()
