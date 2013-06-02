@@ -60,6 +60,7 @@ public class kill : MonoBehaviour
 			if (!playerDead)
 			{
 				PlayerDying();
+				GameObject.Find("carl").GetComponentInChildren<Detonator>().Explode();
 				audio.Play();
 			}
 		}
