@@ -1,20 +1,20 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerNoise : MonoBehaviour {
-	
-	public SphereCollider noiseSphere;
-	
-	public float sprintRadius=5f, walkRadius=2.5f, sneakRadius=1.25f, stillRadius=0.1f;
-	
+public class PlayerNoise : MonoBehaviour
+{
 	private PlayerMovement move;
-	// Use this for initialization
-	void Start () {
+	
+	public SphereCollider noiseSphere;	
+	public float sprintRadius=5f, walkRadius=2.5f, sneakRadius=1.25f, stillRadius=0.1f;
+
+	void Start ()
+	{
 		move = GetComponent<PlayerMovement>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		noiseSphere.radius = MovementStateToRadius(move);
 	}
 	
@@ -38,4 +38,9 @@ public class PlayerNoise : MonoBehaviour {
 		}
 	}
 	
+	public void setRadius(float factor)
+	{
+		sprintRadius *= factor;
+		walkRadius *= factor;
+	}
 }

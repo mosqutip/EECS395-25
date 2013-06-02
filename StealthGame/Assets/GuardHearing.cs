@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GuardHearing : MonoBehaviour
 {
-	public int speed;
+	public float speed;
 	private bool alerted;
 	
 	void OnTriggerEnter(Collider obj)
@@ -36,7 +36,7 @@ public class GuardHearing : MonoBehaviour
 					var newRotation = Quaternion.LookRotation(obj.transform.position - transform.position, Vector3.up); 
 					newRotation.x = 0;
 					newRotation.z = 0;
-					transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, speed *Time.deltaTime);
+					transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, speed * Time.deltaTime);
 				}
 			}
 		}
@@ -48,5 +48,10 @@ public class GuardHearing : MonoBehaviour
 	public void setAlerted(bool isAlerted)
 	{
 		alerted = isAlerted;
+	}
+	
+	public void setTurnSpeed(float factor)
+	{
+		speed *= factor;
 	}
 }

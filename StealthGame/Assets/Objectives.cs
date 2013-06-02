@@ -38,6 +38,7 @@ public class Objectives : MonoBehaviour
 			Rect objectivesPanePosition = new Rect(5.0f, 5.0f, 507.0f, 379.0f);
 			// 5 pixel offset due to the label on top?
 			Rect objectivesPosition = new Rect(10.0f, 5.0f, 497.0f, 369.0f);
+			GUI.color = new Color(GUI.color.a, GUI.color.g, GUI.color.b, 0.75f);
 			GUI.DrawTexture(objectivesPanePosition, objectivesPane);
 			GUI.Label(objectivesPosition, objectivesText);
 		}

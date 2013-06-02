@@ -7,6 +7,7 @@ public class kill : MonoBehaviour
 	private Animator anim;
 	private PlayerMovement move;
 	private HashIDs hash;
+	private float detectionRate = 1.0f;
 	
 	public bool playerDead = false;
 	public float delay = 2.5f;
@@ -44,7 +45,7 @@ public class kill : MonoBehaviour
 	void PlayerInView()
 	{
 		Component deathLight = this.transform.parent.gameObject.GetComponentInChildren(typeof(Light));
-		deathLight.light.spotAngle -= 1.0f;
+		deathLight.light.spotAngle -= detectionRate;
 		deathLight.light.color = new Color(1.0f, deathLight.light.color.g - 0.015625f, deathLight.light.color.b - 0.015625f, 1.0f);
 		if (deathLight.light.spotAngle <= 5.0f)
 		{
@@ -80,6 +81,23 @@ public class kill : MonoBehaviour
 	{
         if (obj.tag == "Player")
 		{
+			if (playerInView == true)
+			{
+				GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerNoise>().setRadius(1.25f);
+				GameObject.Find("AlarmLevel").GetComponentInChildren<Alarm>().setAlarmLevel();
+				detectionRate += 0.5f;
+				GameObject[] guards = GameObject.FindGameObjectsWithTag("Enemy");
+				foreach (GameObject g in guards)
+				{
+					GuardPath temp = g.GetComponent<GuardPath>();
+					if (temp != null)
+					{
+						temp.setWalkSpeed(1.25f);
+						temp.setRotationSpeed(1.25f);
+					}
+					g.GetComponent<GuardHearing>().setTurnSpeed(1.25f);
+				}
+			}
 			playerInView = false;
 		}
     }

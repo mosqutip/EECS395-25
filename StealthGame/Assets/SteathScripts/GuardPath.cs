@@ -14,7 +14,7 @@ public class GuardPath : MonoBehaviour
 	
 	//guard paths
 	public float speed = 3f;
-	public int rotationSpeed = 3;
+	public float rotationSpeed = 3;
 	public Transform[] waypoints;
     public float waypointDistance = 25f;
 	public bool loop = true;
@@ -95,4 +95,13 @@ public class GuardPath : MonoBehaviour
         }
     }
 	
+	public void setWalkSpeed(float factor)
+	{
+		speed *= factor;
+	}
+	
+	public void setRotationSpeed(float factor)
+	{
+		rotationSpeed *= factor;
+	}
 }
