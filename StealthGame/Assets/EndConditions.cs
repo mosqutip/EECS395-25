@@ -16,6 +16,7 @@ public class EndConditions : MonoBehaviour {
 	{
 		if (objectives.Count == 0)
 		{
+			Destroy(GameObject.Find("CurrentLevel"));
 			Application.LoadLevel(Application.loadedLevel +1);
 		}
 	}
