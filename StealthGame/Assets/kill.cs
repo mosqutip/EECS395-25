@@ -60,8 +60,11 @@ public class kill : MonoBehaviour
 			if (!playerDead)
 			{
 				PlayerDying();
-				GameObject.Find("carl").GetComponentInChildren<Detonator>().Explode();
+				Detonator boom = GameObject.Find("carl").GetComponentInChildren<Detonator>();
+				boom.Explode();
 				audio.Play();
+				boom.GetComponent<AudioSource>().audio.Play();
+				
 			}
 		}
 	}

@@ -12,7 +12,7 @@ public class GuardStationary : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (! GetComponent<GuardHearing>().active)
+		if (! GetComponent<GuardHearing>().getAlerted())
 		{
 			var newRotation = Quaternion.LookRotation(direction, Vector3.up);
 			newRotation.x = 0;

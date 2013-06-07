@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
 	public Dictionary<string, int> items;
 	public Texture objectiveCompletePane;
 	public Texture objectiveCheck;
+	public AudioClip ting;
 
 	void Start()
 	{
@@ -22,9 +23,11 @@ public class Inventory : MonoBehaviour
 	
 	void OnTriggerEnter(Collider obj)
 	{
-		float distance = Vector3.Distance(transform.position, obj.transform.position);
+		
 		if ((obj.tag == "InventoryItem"))
 		{
+			audio.PlayOneShot(ting);
+			//obj.GetComponent<AudioSource>().audio.Play();
 			string name = obj.GetComponent<InventoryInfo>().name;
 			if (items.ContainsKey(name))
 			{

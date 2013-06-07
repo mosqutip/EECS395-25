@@ -3,21 +3,32 @@ using System.Collections;
 
 public class Objectives : MonoBehaviour
 {
-	private string objectivesText;
 	private bool showMenu = false;
 	public Texture objectivesPane;
+	public string objectivesText;
 	
 	void Start()
 	{
-		// Original height and width
-		// Scale with gui matrix change
-		objectivesText = "Use WASD or the arrow keys to move\n" +
-					 	 "Hold space to run\n" +
-						 "Hold shift to sneak\n" +
-						 "Press Q and E to rotate the camera orientation\n" +
-					 	 "Avoid the guards and their flashlights\n" +
-					 	 "To beat the level, find the flare and escape!";
+		
+		
+	/*	"Use WASD or the arrow keys to move\n" +
+	 	"Hold space to run. Running will make you louder.\n" +
+				"Sprinting takes stamina (the green bar on the bottom-right)."+
+		"Hold shift to sneak. Sneaking will make you quieter.\n" +
+				"Avoid the guards and their flashlights.\n" +
+		"If a guard can see you, it will swiftly kill you with lasers\n"+
+				"(You'll have a brief window of opportunity to escape)."+
+				"The more close calls you have, the more alert the guards will be."+
+				"The alert level is in the bottom-left corner."+
+		"Press Q and E to rotate the camera orientation.\n"+
+		"The purple line on your minimap points to your next objective at all times.\n"+
+				"This game is hard; stop complaining."*/
+
 	}
+	
+	
+	
+	
 	
 	void Update()
 	{
