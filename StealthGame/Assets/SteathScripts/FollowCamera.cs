@@ -18,14 +18,14 @@ public class FollowCamera : MonoBehaviour {
 	}
 	
 	void LateUpdate() {
-		if (Input.GetKeyDown ("q")){
-			currentRotation += 90;
+		if (Input.GetKey("q")){
+			currentRotation -= 1;
 			if (currentRotation >= 360){
 				currentRotation -= 360;
 			}
 		}
-		if (Input.GetKeyDown ("e")){
-			currentRotation -= 90;
+		if (Input.GetKey("e")){
+			currentRotation += 1;
 			if (currentRotation <= -360){
 				currentRotation += 360;
 			}
